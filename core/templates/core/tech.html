@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}">
+
+  <title>استمارة جمع العلاقات</title>
+</head>
+
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+
+  label {
+    display: flex;
+    justify-content: start;
+  }
+
+  .label {
+    display: flex;
+    justify-content: start;
+  }
+
+  input {
+    margin: 0%;
+  }
+
+  .button-div {
+    display: flex;
+    justify-content: center;
+  }
+
+  .text-center {
+    text-align: center;
+    margin: 10px;
+  }
+
+  .mb-3.error input {
+    border-color: #ff3860;
+  }
+
+  /* .mb-3.success input {
+      color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+} */
+  .mb-3.success input {
+    border-color: #09c372;
+  }
+</style>
+
+<body>
+
+
+
+  <div class="container-fluid m-0 p-0">
+
+    <h2 class="text-center alert">استمارة جمع العلاقات</h2>
+
+    <div class="row mt-3 justify-content-center">
+
+      <div class="col-sm-8 col-12 justify-content-center card text-bg-light p-3">
+
+        <form id="test_form" method="POST" action="{% url 'techajax' %}">
+          {% csrf_token %}
+          <div class=" col-sm-12 col-md-12 col-lg-12 ">
+            <div class="mb-3 ">
+              <label class="form-label" id="labael">الاسم</label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="الاسم" >
+              <div class="error text-danger label">
+              </div>
+            </div>
+
+            <div class="mb-3 ">
+              <label class="form-label">التوجه</label>
+              <input type="text" id="direction" name="direction" class="form-control" placeholder="التوجه">
+              <div class="error text-danger label">
+              </div>
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label">الموقعية</label>
+              <input type="text" id="represent" name="represent" class="form-control" placeholder="الموقعية">
+              <div class="error text-danger label">
+              </div>
+            </div>
+
+            <div class="mb-3 ">
+              <label class="form-label">العمر</label>
+              <input type="text" id="age" name="age" class="form-control" placeholder="العمر">
+              <div class="error text-danger label">
+              </div>
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label">المحافظة</label>
+              <select name="gov" class="form-control form-control-sm" >
+                <option>بغداد</option>
+                <option> بابل</option>
+                <option> أربيل</option>
+                <option>الأنبار</option>
+                <option>البصرة</option>
+                <option>دهوك</option>
+                <option>الديوانية</option>
+                <option> ديالى</option>
+                <option>ذي قار</option>
+                <option> السليمانية</option>
+                <option> صلاح الدين</option>
+                <option> كركوك</option>
+                <option> المثنى</option>
+                <option> ميسان</option>
+                <option> النجف</option>
+                <option> نينوى</option>
+                <option> واسط</option>
+              </select>
+              <div class="error text-danger label">
+              </div>
+            </div>
+
+            <div class="mb-3 ">
+              <label class="form-label">المنطقة</label>
+              <input type="text" id="area" name="area" class="form-control" placeholder="المنطقة">
+              <div class="error text-danger label">
+              </div>
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label">رقم الهاتف</label>
+              <input type="text" id="phone" name="phone" class="form-control" placeholder="رقم الهاتف">
+              <div class="error text-danger label">
+              </div>
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label">الشخص المعروف</label>
+              <input type="text" id="nkown_person" name="nkown_person" class="form-control" placeholder="الشخص المعروف">
+              <div class="error text-danger label">
+              </div>
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label">رقم الشخص المعروف</label>
+              <input type="text" id="nkown_person_phone" name="nkown_person_phone" class="form-control" placeholder="رقم الشخص المعرف">
+              <div class="error text-danger label">
+              </div>
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label">مقدار علاقة الشخص بالمعرف</label>
+              <input type="text" id="nkown_person_relation" name="nkown_person_relation" class="form-control"
+                placeholder="مقدار علاقة الشخص بالمعرف">
+              <div class="error text-danger label">
+              </div>
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label">الملاحظات</label>
+              <textarea  name="notes" class="form-control" placeholder="الملاحظات" ></textarea>
+              <div class="error text-danger label">
+              </div>
+            </div>
+            <div class="button-div">
+              <button type="submit" id="save_btn" class="btn btn-success">التاكيد</button>
+
+            </div>
+          </div>
+      </div>
+      </form>
+    </div>
+
+
+  </div>
+  </div>
+
+
+</body>
+
+
+
+<script src="{% static 'core/js/jquery.js' %}"></script>
+<script src="{% static 'core/js/popper.js' %}"></script>
+<script src="{% static 'core/js/bootstrap.js' %}"></script>
+
+
+{% include 'core/tech_js.html' %}
+</body>
+
+</html>

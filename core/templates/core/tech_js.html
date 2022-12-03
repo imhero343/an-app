@@ -1,0 +1,222 @@
+<script type="text/javascript">
+
+
+// $("#save_btn").click(function(e){
+//   e.preventDefault(e);
+// if($("#name").val()==""){
+//     $("#name-error").html("يجب ملئ هذا الحقل");
+// }
+// if($("#name").val()!=""){
+//     $("#name-error").html("");
+// }
+// if($("#direction").val()==""){
+//     $("#direction-error").html("يجب ملئ هذا الحقل");
+// }
+// if($("#direction").val()!=""){
+//     $("#direction-error").html("");
+// }
+
+
+// if($("#represent").val()==""){
+//     $("#represent-error").html("يجب ملئ هذا الحقل");
+// }
+// if($("#represent").val()!=""){
+//     $("#represent-error").html("");
+// }
+
+// if($("#represent").val()==""){
+//     $("#represent-error").html("يجب ملئ هذا الحقل");
+// }
+// if($("#represent").val()!=""){
+//     $("#represent-error").html("");
+// }
+
+// //   console.log("Save Button Clicked");
+// //   var formData = $("#test_form").serializeObject();
+// //   var obj;
+
+// //   var fnarray = [];
+// //   var lnarray = [];
+// //   var oparray = [];
+
+// //     obj = {};
+// //     obj.firstname = formData.fn;
+// //     obj.lastname = formData.ln;
+// //     obj.opinion = formData.op;
+
+// //     fnarray.push(formData.fn);
+// //     lnarray.push(formData.ln);
+// //     oparray.push(formData.op);
+
+// //     $.ajax({
+// //        type: 'POST',
+// //        url: "{% url 'techajax' %}",
+// //        headers: {'X-CSRFToken': '{{ csrf_token }}'},
+// //        data: {'fn':fnarray, 'ln':lnarray, 'op':oparray},
+
+// //        success: function(data){
+// //          x = data.status;
+// //          $("#test_form")[0].reset();
+// //          if(x == 1){
+// //           alert("Form Submitted Successfully");
+// //          }
+
+// //          if(x == 0){
+// //           alert("Data Is Not Submitted, Failed");
+// //          }
+
+// //        }
+// //     })
+
+
+
+
+
+// });
+const form = document.getElementById('test_form');
+const username = document.getElementById('name');
+const direction = document.getElementById('direction');
+const represent = document.getElementById('represent');
+const age = document.getElementById('age');
+const area = document.getElementById('area');
+const phone = document.getElementById('phone');
+const nkown_person = document.getElementById('nkown_person');
+const nkown_person_phone = document.getElementById('nkown_person_phone');
+const nkown_person_relation = document.getElementById('nkown_person_relation');
+
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    if(validateInputs() == 1){
+        e.currentTarget.submit();
+
+    }
+
+});
+
+const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+}
+
+const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+};
+
+const isNotValidNumber = number => {
+    return isNaN(number);
+}
+
+const validateInputs = () => {
+    const usernameValue = username.value.trim();
+    const directionValue = direction.value.trim();
+    const representValue = represent.value.trim();
+    const ageValue = age.value.trim();
+    const areaValue = area.value.trim();
+    const phoneValue = phone.value.trim();
+    const nkown_personValue = nkown_person.value.trim();
+    const nkown_person_phoneValue = nkown_person_phone.value.trim();
+    const nkown_person_relationValue = nkown_person_phone.value.trim();
+    var work = 1;
+
+    if(usernameValue === '') {
+        setError(username, 'يجب ملئ هذا الحقل');
+        work=0;
+    } else {
+        setSuccess(username);
+    }
+
+    if(directionValue === '') {
+        setError(direction, 'يجب ملئ هذا الحقل');
+        work=0;
+
+    } else {
+        setSuccess(direction);
+    }
+    if(representValue === '') {
+        setError(represent, 'يجب ملئ هذا الحقل');
+        work=0;
+
+    } else {
+        setSuccess(represent);
+    }
+    if(areaValue === '') {
+        setError(area, 'يجب ملئ هذا الحقل');
+        work=0;
+
+    } else {
+        setSuccess(area);
+    }
+    if(nkown_personValue === '') {
+        setError(nkown_person, 'يجب ملئ هذا الحقل');
+        work=0;
+
+    } else {
+        setSuccess(nkown_person);
+    }
+    if(nkown_person_relationValue === '') {
+        setError(nkown_person_relation, 'يجب ملئ هذا الحقل');
+        work=0;
+
+    } else {
+        setSuccess(nkown_person_relation);
+    }
+    if(isNotValidNumber(ageValue) || ageValue=="" ) {
+        setError(age, 'يجب ملئ هذا الحقل برقم');
+        work=0;
+
+    } else {
+        setSuccess(age);
+    }
+    if(isNotValidNumber(phoneValue) || phoneValue=="" ) {
+        setError(phone, 'يجب ملئ هذا الحقل برقم');
+        work=0;
+
+    } else {
+        setSuccess(phone);
+    }
+    if(isNotValidNumber(nkown_person_phoneValue) || nkown_person_phoneValue=="" ) {
+        setError(nkown_person_phone, 'يجب ملئ هذا الحقل برقم');
+        work=0;
+
+    } else {
+        setSuccess(nkown_person_phone);
+    }
+
+    // if(emailValue === '') {
+    //     setError(email, 'Email is required');
+    // } else if (!isValidEmail(emailValue)) {
+    //     setError(email, 'Provide a valid email address');
+    // } else {
+    //     setSuccess(email);
+    // }
+
+    // if(passwordValue === '') {
+    //     setError(password, 'Password is required');
+    // } else if (passwordValue.length < 8 ) {
+    //     setError(password, 'Password must be at least 8 character.')
+    // } else {
+    //     setSuccess(password);
+    // }
+
+    // if(password2Value === '') {
+    //     setError(password2, 'Please confirm your password');
+    // } else if (password2Value !== passwordValue) {
+    //     setError(password2, "Passwords doesn't match");
+    // } else {
+    //     setSuccess(password2);
+    // }
+    return work;
+};
+
+
+</script>
